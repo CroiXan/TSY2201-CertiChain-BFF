@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.certichain.bff.model.UserType;
 
-@FeignClient(name = "usersubtypes-service", url = "http://localhost:8082/api/userTypes")
+@FeignClient(name = "usertypes-service", url = "http://certichaindata.ddns.net:8083/api/userTypes")
 public interface UserTypeClient {
 
     @GetMapping
