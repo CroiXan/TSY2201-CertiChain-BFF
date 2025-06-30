@@ -34,4 +34,7 @@ public interface UserDataClient {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id);
 
+    @GetMapping("/type/{userTypeId}")
+    public ResponseEntity<List<UserData>> getByUserTypeId(@PathVariable String userTypeId);
+
 }

@@ -57,4 +57,9 @@ public class UserDataController {
         return userDataClient.delete(id);
     }
 
+    @GetMapping("/type/{userTypeId}")
+    public ResponseEntity<List<UserData>> getByUserTypeId(@PathVariable String userTypeId) {
+        return userDataClient.getByUserTypeId(userTypeId);
+    }
+
 }
