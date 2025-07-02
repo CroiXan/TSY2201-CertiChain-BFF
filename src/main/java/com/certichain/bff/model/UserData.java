@@ -1,20 +1,26 @@
 package com.certichain.bff.model;
 
+import org.bson.types.ObjectId;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 public class UserData {
 
-    private String Id;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private ObjectId id;
     private String UserID;
     private String name;
     private String UserTypeId;
     private String UserSubTypeId;
     private String Status;
 
-    public String getId() {
-        return Id;
+    public ObjectId getId() {
+        return this.id;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public String getUserID() {
