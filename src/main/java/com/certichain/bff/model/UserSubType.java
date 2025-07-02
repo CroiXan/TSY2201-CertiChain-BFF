@@ -8,15 +8,15 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 public class UserSubType {
 
     @JsonSerialize(using = ToStringSerializer.class)
-    private ObjectId Id;
+    private ObjectId id;
     private String Name;
     private String State;
 
     public ObjectId getId() {
-        return Id;
+        return this.id;
     }
     public void setId(ObjectId id) {
-        Id = id;
+        this.id = id;
     }
     public String getName() {
         return Name;
