@@ -12,7 +12,7 @@ import com.certichain.bff.model.PublicDocumentAuditLog;
 @FeignClient(name = "audit-service", url = "http://certichaindocuments.ddns.net:8081/api/audit")
 public interface DocumentAuditClient {
 
-    @GetMapping("/privatedocuments/audit")
+    @GetMapping("/private")
     public List<PrivateDocumentAuditLog> queryPrivateAuditLogs(
             @RequestParam String filterType,
             @RequestParam String filterValue,
@@ -20,7 +20,7 @@ public interface DocumentAuditClient {
             @RequestParam String endDate
     );
 
-    @GetMapping("/publicdocuments/audit")
+    @GetMapping("/public")
     public List<PublicDocumentAuditLog> queryAuditLogs(
         @RequestParam String filterType,
         @RequestParam String filterValue,
