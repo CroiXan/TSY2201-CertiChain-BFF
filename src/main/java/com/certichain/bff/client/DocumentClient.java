@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.certichain.bff.config.FeignConfig;
 import com.certichain.bff.model.DocumentRequest;
 import com.certichain.bff.model.SearchDocumentRequestInfo;
 
-@FeignClient(name = "document-service", url = "http://certichaindocuments.ddns.net:8081/api/document")
+@FeignClient(name = "document-service", url = "http://certichaindocuments.ddns.net:8081/api/document", configuration = FeignConfig.class)
 public interface DocumentClient {
 
     @PostMapping
@@ -26,10 +29,10 @@ public interface DocumentClient {
     @DeleteMapping
     public ResponseEntity<DocumentRequest> discardRequest(String Id);
 
-    @PostMapping("/upload/{id}")
+    @PostMapping(value = "/upload/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<DocumentRequest> uploadDocument(
             @PathVariable String id,
-            @RequestParam("file") MultipartFile file);
+            @RequestPart("file") MultipartFile file);
 
     @GetMapping("/user/search")
     public ResponseEntity<List<SearchDocumentRequestInfo>> userSearchRequests(
