@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.certichain.bff.client.DocumentClient;
+import com.certichain.bff.client.DocumentFileClient;
 import com.certichain.bff.model.DocumentRequest;
 import com.certichain.bff.model.SearchDocumentRequestInfo;
 
@@ -25,9 +26,11 @@ import com.certichain.bff.model.SearchDocumentRequestInfo;
 public class DocumentController {
 
     private final DocumentClient documentClient;
+    private final DocumentFileClient documentFileClient;
 
-    public DocumentController(DocumentClient documentClient) {
+    public DocumentController(DocumentClient documentClient, DocumentFileClient documentFileClient) {
         this.documentClient = documentClient;
+        this.documentFileClient = documentFileClient;
     }
     
     @PostMapping
@@ -44,7 +47,7 @@ public class DocumentController {
     public ResponseEntity<DocumentRequest> uploadDocument(
             @PathVariable String id,
             @RequestParam("file") MultipartFile file) throws IOException {
-        return documentClient.uploadDocument(id, file);
+        return documentFileClient.uploadDocument(id, file);
         
     }
 
