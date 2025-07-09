@@ -32,6 +32,8 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOriginPatterns(List.of(
+                "https://certichain-bff.ddns.net",
+                "https://certichainbff.ddns.net",
                 "https://certichain.ddns.net",
                 "http://localhost:4200"
         ));
